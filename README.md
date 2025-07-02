@@ -7,18 +7,17 @@ Repositório unificado com as pastas separadas por front e back.
 ---
 
 ## 📁 Estrutura do Projeto
-/upstreak \n
-│ \n
+/upstreak <br>
+│ <br>
 ├── backend # API REST em Java com Spring Boot\n
-│ ├── src/main/java/...\n
-│ └── ...\n
-│\n
-├── frontend # Aplicativo mobile em React Native com Expo\n
-│ ├── app/...\n
-│ ├── components/\n
-│ └── ...\n
-│\n
-└── README.md\n
+│ ├── src/main/java/...<br>
+│ └── ...<br>
+│── frontend # Aplicativo mobile em React Native com Expo<br>
+│ ├── app/...<br>
+│ ├── components/<br>
+│ └── ...<br>
+│<br>
+└── README.md<br>
 
 ---
 
@@ -89,6 +88,6 @@ npm install
 npm start
 ```
 ### 🧑‍💻 Autor
-Desenvolvido por Arthur Granito\n
-Contato: arthurgranitodev@gmail.com\n
-Linkedin: linkedin.com/in/arthurgranito\n
+Desenvolvido por Arthur Granito<br>
+Contato: arthurgranitodev@gmail.com<br>
+Linkedin: linkedin.com/in/arthurgranito<br>
