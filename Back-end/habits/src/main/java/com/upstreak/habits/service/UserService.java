@@ -1,6 +1,7 @@
 package com.upstreak.habits.service;
 
 import com.upstreak.habits.DTOs.UserDTO;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -12,6 +13,8 @@ public interface UserService {
     Optional<UserDTO> findById(Long id);
     UserDTO createUser(UserDTO user);
     UserDTO updateById(Long id, UserDTO user);
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
     UserDTO findByUsername(String username);
+
+    void setProfileImagePath(Long id, String imagePath);
 }

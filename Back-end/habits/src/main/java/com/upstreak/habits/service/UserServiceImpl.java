@@ -1,6 +1,7 @@
 package com.upstreak.habits.service;
 
 import com.upstreak.habits.DTOs.UserDTO;
+import com.upstreak.habits.exceptions.UserNotFoundException;
 import com.upstreak.habits.model.User;
 import com.upstreak.habits.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +95,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = repository.findUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
 
         return UserDTO.from(user);
+    }
+
+    @Override
+    public void setProfileImagePath(Long id, String imagePath) {
+        Optional<User> optionalUser = repository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setProfileImage(imagePath);
+            repository.save(user);
+        } else {
+            throw new UserNotFoundException("User not found!");
+        }
     }
 
 

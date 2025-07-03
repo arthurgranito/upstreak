@@ -20,6 +20,9 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @Column(name = "profile_image")
+    private String profileImage;
+
     @OneToMany(mappedBy = "user")
     private List<UserAchievement> achievements;
 
@@ -86,5 +89,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 }

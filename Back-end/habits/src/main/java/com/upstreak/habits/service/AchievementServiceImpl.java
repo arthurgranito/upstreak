@@ -1,6 +1,7 @@
 package com.upstreak.habits.service;
 
 import com.upstreak.habits.DTOs.AchievementDTO;
+import com.upstreak.habits.DTOs.CategoryDTO;
 import com.upstreak.habits.DTOs.UserAchievementDTO;
 import com.upstreak.habits.model.Achievement;
 import com.upstreak.habits.model.Category;
@@ -68,6 +69,11 @@ public class AchievementServiceImpl implements AchievementService{
         userAchievementRepository.save(userAchievement);
 
         System.out.println("Achievement unlocked! User: " + user.getUsername() + ", Achievement: " + achievement.getName());
+    }
+
+    @Override
+    public List<AchievementDTO> insertAchievements(List<AchievementDTO> achievements) {
+        return achievementRepository.saveAll(achievements.stream().map(Achievement::from).toList()).stream().map(AchievementDTO::from).toList();
     }
 
     public void checkAndUnlockAllAchievements(User user) {

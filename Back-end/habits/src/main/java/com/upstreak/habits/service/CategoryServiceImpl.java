@@ -9,12 +9,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepository repository;
 
     @Override
     public List<CategoryDTO> findAll() {
         return repository.findAll().stream().map(c -> new CategoryDTO(c.getId(), c.getName())).toList();
+    }
+
+    @Override
+    public List<CategoryDTO> insertCategories(List<CategoryDTO> categories) {
+        return repository.saveAll(categories.stream().map(Category::from).toList()).stream().map(CategoryDTO::from).toList();
     }
 }

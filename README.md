@@ -124,6 +124,7 @@ Principais dependências:
   ```bash
   npm install -g expo-cli
   ```
+- **Expo Go instalado no seu celular** (disponível na Play Store e App Store)
 
 #### Executando
 1. Acesse a pasta do frontend:
@@ -138,7 +139,9 @@ Principais dependências:
    ```bash
    npx expo start
    ```
-4. Siga as instruções do Expo para rodar no emulador Android/iOS ou Expo Go.
+4. Certifique-se de que seu celular e o computador estejam conectados na **mesma rede Wi-Fi**.
+5. Abra o app **Expo Go** no seu celular e escaneie o **QR code** gerado no terminal ou na página web aberta pelo comando acima.
+6. Siga as instruções do Expo para rodar no emulador Android/iOS ou Expo Go.
 
 > **Obs:** O app espera que a API esteja rodando em produção ou localmente. Ajuste a URL da API nos arquivos de utilitários, se necessário.
 

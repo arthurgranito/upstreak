@@ -4,10 +4,10 @@ import com.upstreak.habits.DTOs.CategoryDTO;
 import com.upstreak.habits.service.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -20,5 +20,17 @@ public class CategoryController {
     public ResponseEntity<List<CategoryDTO>> getAllCategories() {
         List<CategoryDTO> categories = service.findAll();
         return ResponseEntity.ok().body(categories);
+    }
+
+    @PostMapping
+    public ResponseEntity<List<CategoryDTO>> insertCategories(@RequestBody List<CategoryDTO> categories) {
+        List<CategoryDTO> inserted = service.insertCategories(categories);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .build()
+                .toUri();
+
+        return ResponseEntity.created(location).body(inserted);
     }
 }

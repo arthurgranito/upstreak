@@ -6,10 +6,13 @@ import com.upstreak.habits.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.net.URI;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -45,5 +48,31 @@ public class UserController {
         }
     }
 
+    @PostMapping("/{id}/upload-image")
+    public ResponseEntity<String> uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+        try {
+            Optional<UserDTO> optionalUser = service.findById(id);
+            if (optionalUser.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
 
+            String nomeArquivo = UUID.randomUUID() + "-" + file.getOriginalFilename();
+            String diretorio = "/tmp/uploads/";
+            String caminhoCompleto = diretorio + nomeArquivo;
+
+            File diretorioUpload = new File(diretorio);
+            if (!diretorioUpload.exists()) {
+                diretorioUpload.mkdirs();
+            }
+
+            file.transferTo(new File(caminhoCompleto));
+
+            service.setProfileImagePath(id, caminhoCompleto);
+
+            return ResponseEntity.ok("Imagem enviada com sucesso!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Erro ao salvar imagem: " + e.getMessage());
+        }
+    }
 }
